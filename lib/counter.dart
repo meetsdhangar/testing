@@ -9,4 +9,8 @@ class Counter {
   decrement() {
     _counter--;
   }
+
+  reset() {
+    _counter = 0;
+  }
 }

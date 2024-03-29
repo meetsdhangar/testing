@@ -4,7 +4,7 @@ import 'package:testing/home.dart';
 import 'package:testing/main.dart';
 
 void main() {
-  testWidgets('home ...', (tester) async {
+  testWidgets('hometest ...', (tester) async {
     await tester.pumpWidget(const MaterialApp(
       home: MyHomePage(title: 'title'),
     ));
@@ -39,5 +39,11 @@ void main() {
 
     var val4 = find.text('0');
     expect(val4, findsOneWidget);
+
+    var resetWidget = find.byType(TextButton);
+    await tester.tap(resetWidget);
+    await tester.pump();
+    var val5 = find.text('0');
+    expect(val5, findsOneWidget);
   });
 }

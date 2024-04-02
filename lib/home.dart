@@ -57,22 +57,22 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            key: Key('_incrementCounter'),
+            key: const Key('_incrementCounter'),
             onPressed: _incrementCounter,
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
 
           FloatingActionButton(
-            key: Key('_decrementCounter'),
+            key: const Key('_decrementCounter'),
             onPressed: _decrementCounter,
             tooltip: 'Decrement',
             child: const Icon(Icons.remove_circle),
           ), // This trailing
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
 
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               _resetCounter();
             },
-            child: Text(
+            child: const Text(
               "clear",
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800),
             ),

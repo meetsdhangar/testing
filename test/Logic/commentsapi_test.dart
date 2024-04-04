@@ -43,58 +43,56 @@ void main() {
     });
   });
 
-  group('Get Comment List Test -', () {
-    group('Get Comment List function Test - ', () {
-      test('get status code 200 and return comment list', () async {
-        //arrange
-        final List<dynamic> commentsreslist = [
-          {
-            "postId": 1,
-            "id": 1,
-            "name": "id labore ex et quam laborum",
-            "email": "Eliseo@gardner.biz",
-            "body":
-                "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
-          },
-          {
-            "postId": 2,
-            "id": 7,
-            "name":
-                "repellat consequatur praesentium vel minus molestias voluptatum",
-            "email": "Dallas@ole.me",
-            "body":
-                "maiores sed dolores similique labore et inventore et\nquasi temporibus esse sunt id et\neos voluptatem aliquam\naliquid ratione corporis molestiae mollitia quia et magnam dolor"
-          },
-        ];
+  group('Get Comment List function Test - ', () {
+    test('get status code 200 and return comment list', () async {
+      //arrange
+      final List<dynamic> commentsreslist = [
+        {
+          "postId": 1,
+          "id": 1,
+          "name": "id labore ex et quam laborum",
+          "email": "Eliseo@gardner.biz",
+          "body":
+              "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+        },
+        {
+          "postId": 2,
+          "id": 7,
+          "name":
+              "repellat consequatur praesentium vel minus molestias voluptatum",
+          "email": "Dallas@ole.me",
+          "body":
+              "maiores sed dolores similique labore et inventore et\nquasi temporibus esse sunt id et\neos voluptatem aliquam\naliquid ratione corporis molestiae mollitia quia et magnam dolor"
+        },
+      ];
 
-        when(() => myhttpclient.get(
-                Uri.parse('https://jsonplaceholder.typicode.com/comments')))
-            .thenAnswer((invocation) async =>
-                Response(json.encode(commentsreslist), 200));
+      when(() => myhttpclient
+              .get(Uri.parse('https://jsonplaceholder.typicode.com/comments')))
+          .thenAnswer((invocation) async =>
+              Response(json.encode(commentsreslist), 200));
 
-        //action
-        final commentlist = await commentsService.getCommentList();
-        //asset
-        expect(commentlist, isA<List<Commentsmodel>>());
-        expect(commentlist.length, commentsreslist.length);
+      //action
+      final commentlist = await commentsService.getCommentList();
+      //asset
+      expect(commentlist, isA<List<Commentsmodel>>());
+      expect(commentlist.length, commentsreslist.length);
 
-        for (var i = 0; i < commentlist.length; i++) {
-          expect(commentlist[i], isA<Commentsmodel>());
-        }
-      });
+      for (var i = 0; i < commentlist.length; i++) {
+        expect(commentlist[i], isA<Commentsmodel>());
+      }
+    });
 
-      test('get status code 200 and get empty list', () async {
-        //arrange
-        when(() => myhttpclient.get(
-                Uri.parse('https://jsonplaceholder.typicode.com/comments')))
-            .thenAnswer((invocation) async => Response('[]', 200));
-        //action
-        final cmtlist = await commentsService.getCommentList();
+    test('get status code 200 and get empty list', () async {
+      //arrange
+      when(() => myhttpclient
+              .get(Uri.parse('https://jsonplaceholder.typicode.com/comments')))
+          .thenAnswer((invocation) async => Response('[]', 200));
+      //action
+      final cmtlist = await commentsService.getCommentList();
 
-        //assets
-        expect(cmtlist, isA<List<Commentsmodel>>());
-        expect(cmtlist.isEmpty, true);
-      });
+      //assets
+      expect(cmtlist, isA<List<Commentsmodel>>());
+      expect(cmtlist.isEmpty, true);
     });
   });
 }
